@@ -5,7 +5,7 @@
 if (typeof IntelliFactory !=='undefined')
   IntelliFactory.Runtime.Start();
 </script>
-<title>XPlot &#183; Google Candlestick Chart</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"></head>
+<title>XPlot &#183; Google Candlestick Chart</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/vs.css"></head>
  <body>
   <nav class="navbar navbar-default navbar-default-inner" role="navigation">
    <div class="container">
@@ -16,7 +16,9 @@ if (typeof IntelliFactory !=='undefined')
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
      </button>
-     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">XPlot</a>
+     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">
+      <img src="http://tahahachana.github.io/XPlot/XPlot.png" alt="XPlot" id="logo">
+     </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
      <ul class="nav navbar-nav">
@@ -32,12 +34,30 @@ if (typeof IntelliFactory !=='undefined')
   </nav>
   <div class="container">
    <div class="row">
-    <div id="b740f58188f4cddfc0ba">
+    <div id="GoogleCandlestick">
      <h2 class="page-header demo-header">Google Candlestick Chart</h2>
-     <div id="gist">
-      <script src="https://gist.github.com/TahaHachana/b740f58188f4cddfc0ba.js"></script>
+     <div>
+      <pre>
+       <code class="fsharp">#load &quot;../packages/XPlot.GoogleCharts.1.1.0/XPlot.GoogleCharts.fsx&quot;
+ 
+open XPlot.GoogleCharts
+ 
+let data =
+    [
+        &quot;Mon&quot;, 20, 28, 38, 45
+        &quot;Tue&quot;, 31, 38, 55, 66
+        &quot;Wed&quot;, 50, 55, 77, 80
+        &quot;Thu&quot;, 77, 77, 66, 50
+        &quot;Fri&quot;, 68, 66, 22, 15        
+    ]
+        
+let chart =
+    Chart.Candlestick data
+    |&gt; Chart.Show
+</code>
+      </pre>
      </div>
-     <iframe src="http://tahahachana.github.io/XPlot/iframe/b740f58188f4cddfc0ba.html" class="chart-iframe"></iframe>
+     <iframe src="http://tahahachana.github.io/XPlot/iframe/GoogleCandlestick.html" class="chart-iframe"></iframe>
     </div>
    </div>
   </div>
@@ -47,6 +67,8 @@ if (typeof IntelliFactory !=='undefined')
     <p class="text-muted">Built with <a href="http://www.websharper.com/" target="_blank">WebSharper</a></p>
    </div>
   </div>
+  <script src="http://tahahachana.github.io/XPlot/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50af450141ce9366"></script>

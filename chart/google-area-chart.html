@@ -5,7 +5,7 @@
 if (typeof IntelliFactory !=='undefined')
   IntelliFactory.Runtime.Start();
 </script>
-<title>XPlot &#183; Google Area Chart</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"></head>
+<title>XPlot &#183; Google Area Chart</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/vs.css"></head>
  <body>
   <nav class="navbar navbar-default navbar-default-inner" role="navigation">
    <div class="container">
@@ -16,7 +16,9 @@ if (typeof IntelliFactory !=='undefined')
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
      </button>
-     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">XPlot</a>
+     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">
+      <img src="http://tahahachana.github.io/XPlot/XPlot.png" alt="XPlot" id="logo">
+     </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
      <ul class="nav navbar-nav">
@@ -32,12 +34,39 @@ if (typeof IntelliFactory !=='undefined')
   </nav>
   <div class="container">
    <div class="row">
-    <div id="a78621f0f95f4b411fa5">
+    <div id="GoogleArea">
      <h2 class="page-header demo-header">Google Area Chart</h2>
-     <div id="gist">
-      <script src="https://gist.github.com/TahaHachana/a78621f0f95f4b411fa5.js"></script>
+     <div>
+      <pre>
+       <code class="fsharp">#load &quot;../packages/XPlot.GoogleCharts.1.1.0/XPlot.GoogleCharts.fsx&quot;
+ 
+open XPlot.GoogleCharts
+ 
+let sales = [&quot;2013&quot;, 1000; &quot;2014&quot;, 1170; &quot;2015&quot;, 660; &quot;2016&quot;, 1030]
+let expenses = [&quot;2013&quot;, 400; &quot;2014&quot;, 460; &quot;2015&quot;, 1120; &quot;2016&quot;, 540]
+ 
+let options =
+    Options(
+        title = &quot;Company Performance&quot;,
+        hAxis =
+            Axis(
+                title = &quot;Year&quot;,
+                titleTextStyle = TextStyle(color = &quot;#333&quot;)
+            ),
+        vAxis = Axis(minValue = 0)
+    )
+ 
+let chart =
+    [sales; expenses]
+    |&gt; Chart.Area
+    |&gt; Chart.WithLabels [&quot;Sales&quot;; &quot;Expenses&quot;]
+    |&gt; Chart.WithOptions options
+    |&gt; Chart.WithLegend true
+    |&gt; Chart.Show
+</code>
+      </pre>
      </div>
-     <iframe src="http://tahahachana.github.io/XPlot/iframe/a78621f0f95f4b411fa5.html" class="chart-iframe"></iframe>
+     <iframe src="http://tahahachana.github.io/XPlot/iframe/GoogleArea.html" class="chart-iframe"></iframe>
     </div>
    </div>
   </div>
@@ -47,6 +76,8 @@ if (typeof IntelliFactory !=='undefined')
     <p class="text-muted">Built with <a href="http://www.websharper.com/" target="_blank">WebSharper</a></p>
    </div>
   </div>
+  <script src="http://tahahachana.github.io/XPlot/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50af450141ce9366"></script>
