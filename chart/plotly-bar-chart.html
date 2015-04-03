@@ -5,7 +5,7 @@
 if (typeof IntelliFactory !=='undefined')
   IntelliFactory.Runtime.Start();
 </script>
-<title>XPlot &#183; Google Area Chart</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/vs.css"></head>
+<title>XPlot &#183; Plotly Bar Chart</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/vs.css"></head>
  <body>
   <nav class="navbar navbar-default navbar-default-inner" role="navigation">
    <div class="container">
@@ -37,39 +37,37 @@ if (typeof IntelliFactory !=='undefined')
   </nav>
   <div class="container">
    <div class="row">
-    <div id="GoogleArea">
-     <h2 class="page-header demo-header">Google Area Chart</h2>
+    <div id="PlotlyBasicBarChart">
+     <h2 class="page-header demo-header">Basic Bar Chart</h2>
      <div>
       <pre>
-       <code class="fsharp">#load &quot;../packages/XPlot.GoogleCharts.1.1.6/XPlot.GoogleCharts.fsx&quot;
- 
-open XPlot.GoogleCharts
- 
-let sales = [&quot;2013&quot;, 1000; &quot;2014&quot;, 1170; &quot;2015&quot;, 660; &quot;2016&quot;, 1030]
-let expenses = [&quot;2013&quot;, 400; &quot;2014&quot;, 460; &quot;2015&quot;, 1120; &quot;2016&quot;, 540]
- 
-let options =
-    Options(
-        title = &quot;Company Performance&quot;,
-        hAxis =
-            Axis(
-                title = &quot;Year&quot;,
-                titleTextStyle = TextStyle(color = &quot;#333&quot;)
-            ),
-        vAxis = Axis(minValue = 0)
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.1.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Bar(
+                x = [&quot;giraffes&quot;; &quot;orangutans&quot;; &quot;monkeys&quot;],
+                y = [20; 14; 23]
+            )
+        ]
     )
- 
-let chart =
-    [sales; expenses]
-    |&gt; Chart.Area
-    |&gt; Chart.WithLabels [&quot;Sales&quot;; &quot;Expenses&quot;]
-    |&gt; Chart.WithOptions options
-    |&gt; Chart.WithLegend true
-    |&gt; Chart.Show
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Basic Bar Chart&quot;)
+
+figure.Show()
+
 </code>
       </pre>
      </div>
-     <iframe src="http://tahahachana.github.io/XPlot/iframe/GoogleArea.html" class="chart-iframe"></iframe>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/130.embed?width=640&amp;height=480"></iframe>
     </div>
    </div>
   </div>
