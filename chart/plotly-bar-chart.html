@@ -69,6 +69,242 @@ figure.Show()
      </div>
      <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/130.embed?width=640&amp;height=480"></iframe>
     </div>
+    <div id="PlotlyGroupedBarChart">
+     <h2 class="page-header demo-header">Grouped Bar Chart</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.1.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let trace1 =
+    Bar(
+        x = [&quot;giraffes&quot;; &quot;orangutans&quot;; &quot;monkeys&quot;],
+        y = [20; 14; 23],
+        name= &quot;SF Zoo&quot;            
+    )
+
+let trace2 =
+    Bar(
+        x = [&quot;giraffes&quot;; &quot;orangutans&quot;; &quot;monkeys&quot;],
+        y = [12; 18; 29],
+        name = &quot;LA Zoo&quot;
+    )
+
+let data = Data [trace1; trace2]
+
+let layout = Layout(barmode = &quot;group&quot;)
+
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;Grouped Bar Chart&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/145.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyStackedBarChart">
+     <h2 class="page-header demo-header">Stacked Bar Chart</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.1.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let trace1 =
+    Bar(
+        x = [&quot;giraffes&quot;; &quot;orangutans&quot;; &quot;monkeys&quot;],
+        y = [20; 14; 23],
+        name = &quot;SF Zoo&quot;
+    )
+
+let trace2 =
+    Bar(
+        x= [&quot;giraffes&quot;; &quot;orangutans&quot;; &quot;monkeys&quot;],
+        y= [12; 18; 29],
+        name = &quot;LA Zoo&quot;
+    )
+
+let data = Data [trace1; trace2]
+
+let layout = Layout(barmode = &quot;stack&quot;)
+    
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;Stacked Bar Chart&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/146.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="ColoredStyledBarChart">
+     <h2 class="page-header demo-header">Colored and Styled Bar Chart</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.1.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let trace1 =
+    Bar(
+        x = [1995; 1996; 1997; 1998; 1999; 2000; 2001; 2002; 2003; 2004; 2005; 2006; 2007; 2008; 2009; 2010; 2011; 2012],
+        y = [219; 146; 112; 127; 124; 180; 236; 207; 236; 263; 350; 430; 474; 526; 488; 537; 500; 439],
+        name = &quot;Rest of world&quot;,
+        marker = Marker(color = &quot;rgb(55, 83, 109)&quot;)
+    )
+
+let trace2 =
+    Bar(
+        x = [1995; 1996; 1997; 1998; 1999; 2000; 2001; 2002; 2003; 2004; 2005; 2006; 2007; 2008; 2009; 2010; 2011; 2012],
+        y = [16; 13; 10; 11; 28; 37; 43; 55; 56; 88; 105; 156; 270; 299; 340; 403; 549; 499],
+        name = &quot;China&quot;,
+        marker = Marker(color = &quot;rgb(26, 118, 255)&quot;)
+    )
+
+let data = Data [trace1; trace2]
+
+let layout =
+    Layout(
+        title = &quot;US Export of Plastic Scrap&quot;,
+        xaxis =
+            Xaxis(
+                tickfont =
+                    Font(
+                        size = 14.,
+                        color = &quot;rgb(107, 107, 107)&quot;
+                    )
+            ),
+        yaxis =
+            Yaxis(
+                title = &quot;USD (millions)&quot;,
+                titlefont =
+                    Font(
+                        size = 16.,
+                        color = &quot;rgb(107, 107, 107)&quot;
+                    ),
+                tickfont =
+                    Font(
+                        size = 14.,
+                        color = &quot;rgb(107, 107, 107)&quot;
+                    )
+            ),
+        legend =
+            Legend(
+                x = 0.,
+                y = 1.0,
+                bgcolor = &quot;rgba(255, 255, 255, 0)&quot;,
+                bordercolor = &quot;rgba(255, 255, 255, 0)&quot;
+            ),
+        barmode = &quot;group&quot;,
+        bargap = 0.15,
+        bargroupgap = 0.1
+    )
+
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;Colored and Styled Bar Chart&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/147.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="BarChartHoverText">
+     <h2 class="page-header demo-header">Bar Chart with Hover Text</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.1.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let trace =
+    Bar(
+        x = [&quot;Liam&quot;; &quot;Sophie&quot;; &quot;Jacob&quot;; &quot;Mia&quot;; &quot;William&quot;; &quot;Olivia&quot;],
+        y = [8.0; 8.0; 12.0; 12.0; 13.0; 20.0],
+        text = [&quot;4.17 below the mean&quot;; &quot;4.17 below the mean&quot;; &quot;0.17 below the mean&quot;; &quot;0.17 below the mean&quot;; &quot;0.83 above the mean&quot;; &quot;7.83 above the mean&quot;],
+        marker = Marker(color = &quot;rgb(142, 124, 195)&quot;)
+    )
+
+let data = Data [trace]
+
+let layout =
+    Layout(
+        title = &quot;Number of graphs made this week&quot;,
+        font = Font(family = &quot;Raleway, sans-serif&quot;),
+        showlegend = false,
+        xaxis= Xaxis(tickangle = -45.),
+        yaxis=
+            Yaxis(
+                zeroline = false,
+                gridwidth = 2.
+            ),
+        bargap = 0.05
+    )
+
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;Bar Chart with Hover Text&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/148.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="CustomizingIndividualBarColors">
+     <h2 class="page-header demo-header">Customizing Individual Bar Colors</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.1.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Bar(
+                x = [1; 2; 3; 4],
+                y = [5; 4; -3; 2],
+                marker = Marker(color = [&quot;#447adb&quot;; &quot;#447adb&quot;; &quot;#db5a44&quot;; &quot;#447adb&quot;])
+            )
+        ]
+    )
+
+let figure = Figure data
+
+let plotlyResponse = figure.Plot(&quot;Customizing Individual Bar Colors&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/149.embed?width=640&amp;height=480"></iframe>
+    </div>
    </div>
   </div>
   <div id="push"></div>
