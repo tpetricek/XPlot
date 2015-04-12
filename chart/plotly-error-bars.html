@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+<script type='text/javascript'>
+if (typeof IntelliFactory !=='undefined')
+  IntelliFactory.Runtime.Start();
+</script>
+<title>XPlot &#183; Plotly Error Bars</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/vs.css"></head>
+ <body>
+  <nav class="navbar navbar-default navbar-default-inner" role="navigation">
+   <div class="container">
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </button>
+     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">
+      <img src="http://tahahachana.github.io/XPlot/XPlot.png" alt="XPlot" id="logo">
+     </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+     <ul class="nav navbar-nav">
+      <li>
+       <a href="http://tahahachana.github.io/XPlot/">Home</a>
+      </li>
+      <li>
+       <a href="http://tahahachana.github.io/XPlot/google-charts.html">Google Charts</a>
+      </li>
+      <li>
+       <a href="http://tahahachana.github.io/XPlot/plotly.html">Plotly</a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="container">
+   <div class="row">
+    <div id="PlotlyBasicSymmetricErrorBars">
+     <h2 class="page-header demo-header">Basic Symmetric Error Bars</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Scatter(
+                x = [0; 1; 2],
+                y = [6; 10; 2],
+                error_y =
+                    ErrorY(
+                        ``type`` = &quot;data&quot;,
+                        array = [1; 2; 3],
+                        visible = true
+                    )
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Basic Symmetric Error Bars&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/312.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyBarChartErrorBars">
+     <h2 class="page-header demo-header">Bar Chart with Error Bars</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let trace1 =
+    Bar(
+        x = [&quot;Trial 1&quot;; &quot;Trial 2&quot;; &quot;Trial 3&quot;],
+        y = [3; 6; 4],
+        name = &quot;Control&quot;,
+        error_y=
+            ErrorY(
+                ``type`` = &quot;data&quot;,
+                array = [1; 0.5; 1.5],
+                visible = true
+            )
+    )
+    
+let trace2 =
+    Bar(
+        x = [&quot;Trial 1&quot;; &quot;Trial 2&quot;; &quot;Trial 3&quot;],
+        y = [4; 7; 3],
+        name = &quot;Experimental&quot;,
+        error_y =
+            ErrorY(
+                ``type`` = &quot;data&quot;,
+                array = [0.5; 1; 2],
+                visible = true
+            )
+    )
+
+let data = Data([trace1; trace2])
+
+let layout = Layout(barmode = &quot;group&quot;)
+
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;Bar Chart with Error Bars&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/319.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyHorizontalErrorBars">
+     <h2 class="page-header demo-header">Horizontal Error Bars</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Scatter(
+                x = [1; 2; 3; 4],
+                y=[2; 1; 3; 4],
+                error_x =
+                    ErrorX(
+                        ``type`` = &quot;percent&quot;,
+                        value = 10.
+                    )
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Horizontal Error Bars&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/320.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyAsymmetricErrorBars">
+     <h2 class="page-header demo-header">Asymmetric Error Bars</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Scatter(
+                x = [1; 2; 3; 4],
+                y = [2; 1; 3; 4],
+                error_y =
+                    ErrorY(
+                        ``type`` = &quot;data&quot;,
+                        symmetric = false,
+                        array = [0.1; 0.2; 0.1; 0.1],
+                        arrayminus = [0.2; 0.4; 1; 0.2]
+                    )
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Asymmetric Error Bars&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/321.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyColoredStyledErrorBars">
+     <h2 class="page-header demo-header">Colored and Styled Error Bars</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/MathNet.Numerics.3.6.0/lib/net40/MathNet.Numerics.dll&quot;&quot;&quot;
+
+open MathNet.Numerics
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let x_theo = Generate.LinearSpaced(100, -4., 4.)
+let sincx =  Array.map Trig.Sinc x_theo
+
+let x = [-3.8; -3.03; -1.91; -1.46; -0.89; -0.24; -0.0; 0.41; 0.89; 1.01; 1.91; 2.28; 2.79; 3.56]
+let y = [-0.02; 0.04; -0.01; -0.27; 0.36; 0.75; 1.03; 0.65; 0.28; 0.02; -0.11; 0.16; 0.04; -0.15]
+
+let trace1 =
+    Scatter(
+        x = x_theo,
+        y = sincx,
+        name = &quot;sinc(x)&quot;
+    )
+
+let trace2 =
+    Scatter(
+        x = x,
+        y = y,
+        mode = &quot;markers&quot;,
+        name = &quot;measured&quot;,
+        error_y=
+            ErrorY(
+                ``type`` = &quot;constant&quot;,
+                value = 0.1,
+                color = &quot;#85144B&quot;,
+                thickness = 1.5,
+                width = 3.,
+                opacity = 1.
+            ),
+        error_x =
+            ErrorX(
+                ``type`` = &quot;constant&quot;,
+                value = 0.2,
+                color = &quot;#85144B&quot;,
+                thickness = 1.5,
+                width = 3.,
+                opacity = 1.
+            ),
+        marker =
+            Marker(
+                color = &quot;#85144B&quot;,
+                size = 8.
+            )
+    )
+
+let data = Data([trace1; trace2])
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Colored and Styled Error Bars&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/323.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyErrorBarsPercentageYValue">
+     <h2 class="page-header demo-header">Error Bars as a Percentage of the y-Value</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Scatter(
+                x = [0; 1; 2],
+                y = [6; 10; 2],
+                error_y =
+                    ErrorY(
+                        ``type`` = &quot;percent&quot;,
+                        value = 50.,
+                        visible = true
+                    )
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Error Bars as a Percentage of the y-Value&quot;)
+
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/326.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyAsymmetricErrorBarsConstantOffset">
+     <h2 class="page-header demo-header">Asymmetric Error Bars with a Constant Offset</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.6.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Scatter(
+                x = [1; 2; 3; 4],
+                y = [2; 1; 3; 4],
+                error_y =
+                    ErrorY(
+                        ``type`` = &quot;percent&quot;,
+                        symmetric = false,
+                        value = 15.,
+                        valueminus = 25.
+                    )
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Asymmetric Error Bars with a Constant Offset&quot;)
+
+figure.Show()
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/327.embed?width=640&amp;height=480"></iframe>
+    </div>
+   </div>
+  </div>
+  <div id="push"></div>
+  <div class="footer">
+   <div class="container">
+    <p class="text-muted">Built with <a href="http://www.websharper.com/" target="_blank">WebSharper</a></p>
+   </div>
+  </div>
+  <script src="http://tahahachana.github.io/XPlot/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50af450141ce9366"></script>
+ </body>
+</html>
