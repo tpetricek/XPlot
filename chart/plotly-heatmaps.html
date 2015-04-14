@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+<script type='text/javascript'>
+if (typeof IntelliFactory !=='undefined')
+  IntelliFactory.Runtime.Start();
+</script>
+<title>XPlot &#183; Plotly Heatmaps</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/vs.css"></head>
+ <body>
+  <nav class="navbar navbar-default navbar-default-inner" role="navigation">
+   <div class="container">
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </button>
+     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">
+      <img src="http://tahahachana.github.io/XPlot/XPlot.png" alt="XPlot" id="logo">
+     </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+     <ul class="nav navbar-nav">
+      <li>
+       <a href="http://tahahachana.github.io/XPlot/">Home</a>
+      </li>
+      <li>
+       <a href="http://tahahachana.github.io/XPlot/google-charts.html">Google Charts</a>
+      </li>
+      <li>
+       <a href="http://tahahachana.github.io/XPlot/plotly.html">Plotly</a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="container">
+   <div class="row">
+    <div id="PlotlyBasicHeatmap">
+     <h2 class="page-header demo-header">Basic Heatmap</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.7.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Heatmap(
+                z = [[1; 20; 30]; [20; 1; 60]; [30; 60; 1]]
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Basic Heatmap&quot;)
+    
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/365.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyHeatmapCategoricalAxisLabels">
+     <h2 class="page-header demo-header">Heatmap with Categorical Axis Labels</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.7.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let data =
+    Data(
+        [
+            Heatmap(
+                z = [[1; 20; 30; 50; 1]; [20; 1; 60; 80; 30]; [30; 60; 1; -10; 20]],
+                x = [&quot;Monday&quot;; &quot;Tuesday&quot;; &quot;Wednesday&quot;; &quot;Thursday&quot;; &quot;Friday&quot;],
+                y = [&quot;Morning&quot;; &quot;Afternoon&quot;; &quot;Evening&quot;]
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Heatmap with Categorical Axis Labels&quot;)
+    
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/369.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyCustomColorscale">
+     <h2 class="page-header demo-header">Custom Colorscale</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.7.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let z =
+    [
+        for x in 1 .. 50 do
+            let lst = List.map (fun y -&gt; y + x) [1..50]
+            yield lst
+    ]
+
+let colorScale =
+    [
+        [box 0.0; box &quot;rgb(165,0,38)&quot;]
+        [0.1111111111111111; &quot;rgb(215,48,39)&quot;]
+        [0.2222222222222222; &quot;rgb(244,109,67)&quot;]
+        [0.3333333333333333; &quot;rgb(253,174,97)&quot;]
+        [0.4444444444444444; &quot;rgb(254,224,144)&quot;]
+        [0.5555555555555556; &quot;rgb(224,243,248)&quot;]
+        [0.6666666666666666; &quot;rgb(171,217,233)&quot;]
+        [0.7777777777777778; &quot;rgb(116,173,209)&quot;]
+        [0.8888888888888888; &quot;rgb(69,117,180)&quot;]
+        [1.0; &quot;rgb(49,54,149)&quot;]
+    ]
+
+let data =
+    Data(
+        [
+            Heatmap(
+                z = z,
+                colorscale = colorScale
+            )
+        ]
+    )
+
+let figure = Figure(data)
+
+let plotlyResponse = figure.Plot(&quot;Custom Colorscale&quot;)
+    
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/370.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyEarthColorscale">
+     <h2 class="page-header demo-header">Earth Colorscale</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.7.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let z =
+    [
+        for x in 1 .. 50 -&gt;
+            List.map (fun y -&gt; y + x) [1..50]
+    ]
+
+let data =
+    Data(
+        [
+            Heatmap(
+                z = z,
+                colorscale = &quot;Earth&quot;
+            )
+        ]
+    )
+
+let layout = Layout(title = &quot;Earth&quot;)
+
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;Earth Colorscale&quot;)
+    
+figure.Show()
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/371.embed?width=640&amp;height=480"></iframe>
+    </div>
+    <div id="PlotlyYIGnBuColorscale">
+     <h2 class="page-header demo-header">YIGnBu Colorscale</h2>
+     <div>
+      <pre>
+       <code class="fsharp">#r &quot;&quot;&quot;../packages/Http.fs.1.5.1/lib/net40/HttpClient.dll&quot;&quot;&quot;
+#r &quot;&quot;&quot;../packages/XPlot.Plotly.0.7.0/Lib/Net45/XPlot.Plotly.dll&quot;&quot;&quot;
+
+open XPlot.Plotly
+
+Plotly.Signin(&quot;Username&quot;, &quot;API Key&quot;)
+
+let z =
+    [
+        for x in 1 .. 50 -&gt;
+            List.map (fun y -&gt; y + x) [1..50]
+    ]
+
+let data =
+    Data(
+        [
+            Heatmap(
+                z = z,
+                colorscale = &quot;YIGnBu&quot;
+            )
+        ]
+    )
+
+let layout = Layout(title = &quot;YIGnBu&quot;)
+
+let figure = Figure(data, layout)
+
+let plotlyResponse = figure.Plot(&quot;YIGnBu Colorscale&quot;)
+    
+figure.Show()
+
+</code>
+      </pre>
+     </div>
+     <iframe width="640" height="480" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~TahaHachana/372.embed?width=640&amp;height=480"></iframe>
+    </div>
+   </div>
+  </div>
+  <div id="push"></div>
+  <div class="footer">
+   <div class="container">
+    <p class="text-muted">Built with <a href="http://www.websharper.com/" target="_blank">WebSharper</a></p>
+   </div>
+  </div>
+  <script src="http://tahahachana.github.io/XPlot/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50af450141ce9366"></script>
+ </body>
+</html>
