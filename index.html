@@ -1,101 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
- <head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
-<script type='text/javascript'>
-if (typeof IntelliFactory !=='undefined')
-  IntelliFactory.Runtime.Start();
-</script>
-<title>XPlot &#183; F# Data Visualization</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" media="screen"><link rel="stylesheet" href="http://tahahachana.github.io/XPlot/style.css"></head>
- <body>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-   <div class="container">
-    <div class="navbar-header">
-     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-     </button>
-     <a class="navbar-brand" href="http://tahahachana.github.io/XPlot/">
-      <img src="http://tahahachana.github.io/XPlot/XPlot.png" alt="XPlot" id="logo">
-     </a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-collapse">
-     <ul class="nav navbar-nav">
-      <li class="active">
-       <a href="http://tahahachana.github.io/XPlot/">Home</a>
-      </li>
-      <li>
-       <a href="http://tahahachana.github.io/XPlot/google-charts.html">Google Charts</a>
-      </li>
-      <li>
-       <a href="http://tahahachana.github.io/XPlot/plotly.html">Plotly</a>
-      </li>
-     </ul>
-    </div>
-   </div>
-  </nav>
-  <section id="jumbotron">
-   <div class="jumbotron text-center">
-    <h1>
-     <img src="http://tahahachana.github.io/XPlot/XPlot.png" alt="XPlot">
-     <span style="vertical-align: sub;">XPlot</span>
-    </h1>
-    <p>F# Data Visualization Package</p>
-   </div>
-  </section>
-  <section id="lead" class="home-section">
-   <div class="container">
-    <div id="lead-text">
-     <p class="lead">XPlot is a data visualization package for the F# programming language powered by popular JavaScript charting libraries that aims to circumvent the lack of configuration options support in the <a href="http://tahahachana.github.io/FsPlot/" target="_blank">FsPlot</a> sister project.</p>
-     <a href="https://github.com/TahaHachana/XPlot" target="_blank" class="btn btn-primary btn-lg">Fork me on GitHub</a>
-    </div>
-   </div>
-  </section>
-  <div class="container">
-   <div id="main">
-    <section id="libs" class="home-section">
-     <div class="page-header">
-      <h2>Supported JavaScript Libraries</h2>
-     </div>
-     <h3>
-      <a href="http://tahahachana.github.io/XPlot/google-charts.html">Google Charts</a>
-     </h3>
-     <p>Google&#39;s powerful and free data visualization library based on HTML5/SVG technology.</p>
-     <h3>
-      <a href="http://tahahachana.github.io/XPlot/plotly.html">Plotly</a>
-     </h3>
-     <p>Plotly is an online analytics and data visualization tool.</p>
-    </section>
-    <section id="nuget" class="home-section">
-     <div class="page-header">
-      <h2>Nuget</h2>
-     </div>
-     <h3>Google Charts</h3>
-     <kbd>PM&gt; Install-Package XPlot.GoogleCharts</kbd>
-     <h3>Plotly</h3>
-     <kbd>PM&gt; Install-Package XPlot.Plotly</kbd>
-    </section>
-    <section id="custom-display" class="home-section">
-     <div class="page-header">
-      <h2>Custom Display</h2>
-     </div>
-     <div>
-      <p>By default XPlot displays charts in a WPF window but you can customize this behavior by grabbing a chart&#39;s HTML source and displaying it in a different way by driving a browser with Selenium for example.</p>
-     </div>
-    </section>
-   </div>
-  </div>
-  <div id="push"></div>
-  <section id="footer">
-   <div class="footer">
+  <head>
+    <meta charset="utf-8"/>
+    <title>XPlot
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Data visualization library for F#"/>
+    <meta name="author" content="Taha Hachana"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1.1", { packages: ["corechart", "annotationchart", "calendar", "gauge", "geochart", "map", "sankey", "table", "timeline", "treemap"] })
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="/XPlot/content/style.css" />
+    <script type="text/javascript" src="/XPlot/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
     <div class="container">
-     <p class="text-muted">Built with <a href="http://www.websharper.com/" target="_blank">WebSharper</a></p>
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/TahaHachana/XPlot">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/XPlot/index.html">XPlot</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="XPlot" class="anchor" href="#XPlot">XPlot</a></h1>
+
+<p>XPlot is a data visualization package for the F# programming language powered by popular JavaScript charting libraries that aims to circumvent the lack of configuration options support in the FsPlot sister project.</p>
+
+<p>Documentation</p>
+
+<h2><a name="Example" class="anchor" href="#Example">Example</a></h2>
+
+<p>This example demonstrates using a function defined in this sample library.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="prep">#r</span> <span class="s">&quot;XPlot.GoogleCharts.dll&quot;</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs14', 15)" onmouseover="showTip(event, 'fs14', 15)" class="i">XPlot</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs15', 16)" onmouseover="showTip(event, 'fs15', 16)" class="i">GoogleCharts</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 17)" onmouseover="showTip(event, 'fs16', 17)" class="i">series</span> <span class="o">=</span> [ <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;lines&quot;</span> ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 18)" onmouseover="showTip(event, 'fs17', 18)" class="i">inputs</span> <span class="o">=</span> [ <span onmouseout="hideTip(event, 'fs1', 19)" onmouseover="showTip(event, 'fs1', 19)" class="i">Bolivia</span>; <span onmouseout="hideTip(event, 'fs2', 20)" onmouseover="showTip(event, 'fs2', 20)" class="i">Ecuador</span>; <span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="i">Madagascar</span>; <span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="i">Average</span> ]
+
+<span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="i">inputs</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 24)" onmouseover="showTip(event, 'fs18', 24)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 25)" onmouseover="showTip(event, 'fs19', 25)" class="f">Combo</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs20', 27)" onmouseover="showTip(event, 'fs20', 27)" class="f">WithOptions</span> 
+     (<span onmouseout="hideTip(event, 'fs21', 28)" onmouseover="showTip(event, 'fs21', 28)" class="t">Options</span>(<span class="i">title</span> <span class="o">=</span> <span class="s">&quot;Coffee Production&quot;</span>, <span onmouseout="hideTip(event, 'fs16', 29)" onmouseover="showTip(event, 'fs16', 29)" class="i">series</span> <span class="o">=</span> 
+        [| <span class="k">for</span> <span onmouseout="hideTip(event, 'fs22', 30)" onmouseover="showTip(event, 'fs22', 30)" class="i">typ</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs16', 31)" onmouseover="showTip(event, 'fs16', 31)" class="i">series</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs23', 32)" onmouseover="showTip(event, 'fs23', 32)" class="t">Series</span>(<span onmouseout="hideTip(event, 'fs22', 33)" onmouseover="showTip(event, 'fs22', 33)" class="i">typ</span>) |]))
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 34)" onmouseover="showTip(event, 'fs18', 34)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs24', 35)" onmouseover="showTip(event, 'fs24', 35)" class="f">WithLabels</span> 
+     [<span class="s">&quot;Bolivia&quot;</span>; <span class="s">&quot;Ecuador&quot;</span>; <span class="s">&quot;Madagascar&quot;</span>; <span class="s">&quot;Average&quot;</span>]
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="f">WithLegend</span> <span class="k">true</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 38)" onmouseover="showTip(event, 'fs18', 38)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="f">WithSize</span> (<span class="n">700</span>, <span class="n">300</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+
+<script type="text/javascript">
+    google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable({"cols": [{"type": "string" ,"id": "Column 1" ,"label": "Column 1" }, {"type": "number" ,"id": "Bolivia" ,"label": "Bolivia" }, {"type": "number" ,"id": "Ecuador" ,"label": "Ecuador" }, {"type": "number" ,"id": "Madagascar" ,"label": "Madagascar" }, {"type": "number" ,"id": "Average" ,"label": "Average" }], "rows" : [{"c" : [{"v": "2004/05"}, {"v": 165}, {"v": 938}, {"v": 522}, {"v": 614.6}]}, {"c" : [{"v": "2005/06"}, {"v": 135}, {"v": 1120}, {"v": 599}, {"v": 682}]}, {"c" : [{"v": "2006/07"}, {"v": 157}, {"v": 1167}, {"v": 587}, {"v": 623}]}, {"c" : [{"v": "2007/08"}, {"v": 139}, {"v": 1110}, {"v": 615}, {"v": 609.4}]}, {"c" : [{"v": "2008/09"}, {"v": 136}, {"v": 691}, {"v": 629}, {"v": 569.6}]}]});
+
+            var options = {"legend":{"position":"right"},"series":[{"type":"bars"},{"type":"bars"},{"type":"bars"},{"type":"lines"}],"title":"Coffee Production"} 
+
+            var chart = new google.visualization.ComboChart(document.getElementById('2bed1a65-e016-48ab-b37e-3c9972813aa5'));
+            chart.draw(data, options);
+        }
+</script>
+<div id="2bed1a65-e016-48ab-b37e-3c9972813aa5" style="width: 700px; height: 300px;"></div>
+
+<p>Some more info</p>
+
+<h2><a name="One-more-example" class="anchor" href="#One-more-example">One more example</a></h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="prep">#load</span> <span class="s">&quot;credentials.fsx&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;XPlot.Plotly.dll&quot;</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs14', 40)" onmouseover="showTip(event, 'fs14', 40)" class="i">XPlot</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 41)" onmouseover="showTip(event, 'fs27', 41)" class="i">Plotly</span>
+<span onmouseout="hideTip(event, 'fs28', 42)" onmouseover="showTip(event, 'fs28', 42)" class="t">Plotly</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 43)" onmouseover="showTip(event, 'fs29', 43)" class="f">Signin</span> <span onmouseout="hideTip(event, 'fs30', 44)" onmouseover="showTip(event, 'fs30', 44)" class="t">MyCredentials</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 45)" onmouseover="showTip(event, 'fs31', 45)" class="i">userAndKey</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 46)" onmouseover="showTip(event, 'fs32', 46)" class="i">traces</span> <span class="o">=</span>
+  [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs33', 47)" onmouseover="showTip(event, 'fs33', 47)" class="i">trial</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs13', 48)" onmouseover="showTip(event, 'fs13', 48)" class="i">HobbsPearson</span> <span class="k">-&gt;</span>
+    <span onmouseout="hideTip(event, 'fs34', 49)" onmouseover="showTip(event, 'fs34', 49)" class="t">Scatter</span>(<span onmouseout="hideTip(event, 'fs35', 50)" onmouseover="showTip(event, 'fs35', 50)" class="i">r</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 52)" onmouseover="showTip(event, 'fs6', 52)" class="i">Radial</span>, <span onmouseout="hideTip(event, 'fs36', 53)" onmouseover="showTip(event, 'fs36', 53)" class="i">t</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 54)" onmouseover="showTip(event, 'fs33', 54)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 55)" onmouseover="showTip(event, 'fs9', 55)" class="i">Angular</span>, 
+      <span class="i">mode</span> <span class="o">=</span> <span class="s">&quot;markers&quot;</span>, <span class="i">marker</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 56)" onmouseover="showTip(event, 'fs37', 56)" class="t">Marker</span>(<span class="i">color</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs33', 57)" onmouseover="showTip(event, 'fs33', 57)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 58)" onmouseover="showTip(event, 'fs11', 58)" class="i">Color</span>))]
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 59)" onmouseover="showTip(event, 'fs38', 59)" class="i">layout</span> <span class="o">=</span>
+  <span onmouseout="hideTip(event, 'fs39', 60)" onmouseover="showTip(event, 'fs39', 60)" class="t">Layout</span>(<span class="i">title</span> <span class="o">=</span> <span class="s">&quot;Hobbs-Pearson Trials&quot;</span>, <span class="i">showlegend</span> <span class="o">=</span> <span class="k">false</span>,
+    <span class="i">plot_bgcolor</span> <span class="o">=</span> <span class="s">&quot;rgb(223,223,223)&quot;</span>)
+
+<span onmouseout="hideTip(event, 'fs40', 61)" onmouseover="showTip(event, 'fs40', 61)" class="t">Figure</span>(<span onmouseout="hideTip(event, 'fs41', 62)" onmouseover="showTip(event, 'fs41', 62)" class="t">Data</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs42', 63)" onmouseover="showTip(event, 'fs42', 63)" class="f">From</span>(<span onmouseout="hideTip(event, 'fs32', 64)" onmouseover="showTip(event, 'fs32', 64)" class="i">traces</span>), <span onmouseout="hideTip(event, 'fs38', 65)" onmouseover="showTip(event, 'fs38', 65)" class="i">layout</span>, <span class="i">Width</span><span class="o">=</span><span class="n">500</span>, <span class="i">Height</span><span class="o">=</span><span class="n">400</span>)
+</pre>
+</td>
+</tr>
+</table>
+
+<iframe width="500" height="400" frameborder="0" seamless="seamless" 
+           scrolling="no" src="https://plot.ly/~tomasp/20.embed?width=500&height=400"></iframe>
+
+<p>Some more stuff!</p>
+
+<div class="tip" id="fs1">val Bolivia : (string * float) list<br /><br />Full name: Index.Bolivia</div>
+<div class="tip" id="fs2">val Ecuador : (string * float) list<br /><br />Full name: Index.Ecuador</div>
+<div class="tip" id="fs3">val Madagascar : (string * float) list<br /><br />Full name: Index.Madagascar</div>
+<div class="tip" id="fs4">val Average : (string * float) list<br /><br />Full name: Index.Average</div>
+<div class="tip" id="fs5">type HobbsPearsonTrial =<br />&#160;&#160;{Radial: float list;<br />&#160;&#160;&#160;Angular: obj list;<br />&#160;&#160;&#160;Color: string;}<br /><br />Full name: Index.HobbsPearsonTrial</div>
+<div class="tip" id="fs6">HobbsPearsonTrial.Radial: float list</div>
+<div class="tip" id="fs7">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs8">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs9">HobbsPearsonTrial.Angular: obj list</div>
+<div class="tip" id="fs10">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs11">HobbsPearsonTrial.Color: string</div>
+<div class="tip" id="fs12">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs13">val HobbsPearson : HobbsPearsonTrial list<br /><br />Full name: Index.HobbsPearson</div>
+<div class="tip" id="fs14">namespace XPlot</div>
+<div class="tip" id="fs15">module GoogleCharts<br /><br />from XPlot</div>
+<div class="tip" id="fs16">val series : string list<br /><br />Full name: Index.series</div>
+<div class="tip" id="fs17">val inputs : (string * float) list list<br /><br />Full name: Index.inputs</div>
+<div class="tip" id="fs18">type Chart =<br />&#160;&#160;static member Annotation : data:seq&lt;#seq&lt;DateTime * &#39;V * string * string&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;V :&gt; value)<br />&#160;&#160;static member Annotation : data:seq&lt;DateTime * #value * string * string&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Area : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bar : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Calendar : data:seq&lt;DateTime * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Chart</div>
+<div class="tip" id="fs19">static member Chart.Combo : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)</div>
+<div class="tip" id="fs20">static member Chart.WithOptions : options:Options -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs21">Multiple items<br />type Options =<br />&#160;&#160;new : unit -&gt; Options<br />&#160;&#160;member ShouldSerializeaggregationTarget : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeallValuesSuffix : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeallowHtml : unit -&gt; bool<br />&#160;&#160;member ShouldSerializealternatingRowStyle : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeanimation : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotationsWidth : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeareaOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeavoidOverlappingGridLines : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Options<br /><br />--------------------<br />new : unit -&gt; Options</div>
+<div class="tip" id="fs22">val typ : string</div>
+<div class="tip" id="fs23">Multiple items<br />type Series =<br />&#160;&#160;new : ?type:string -&gt; Series<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeareaOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecurveType : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefallingColor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializelineWidth : unit -&gt; bool<br />&#160;&#160;member ShouldSerializepointShape : unit -&gt; bool<br />&#160;&#160;member ShouldSerializepointSize : unit -&gt; bool<br />&#160;&#160;member ShouldSerializerisingColor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Series<br /><br />--------------------<br />new : ?type:string -&gt; Series</div>
+<div class="tip" id="fs24">static member Chart.WithLabels : labels:seq&lt;string&gt; -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs25">static member Chart.WithLegend : enabled:bool -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs26">static member Chart.WithSize : size:(int * int) -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs27">namespace XPlot.Plotly</div>
+<div class="tip" id="fs28">type Plotly =<br />&#160;&#160;private new : unit -&gt; Plotly<br />&#160;&#160;static member Signin : username:string * password:string -&gt; unit<br /><br />Full name: XPlot.Plotly.Plotly</div>
+<div class="tip" id="fs29">static member Plotly.Signin : username:string * password:string -&gt; unit</div>
+<div class="tip" id="fs30">module MyCredentials</div>
+<div class="tip" id="fs31">val userAndKey : string * string<br /><br />Full name: MyCredentials.userAndKey</div>
+<div class="tip" id="fs32">val traces : Scatter list<br /><br />Full name: Index.traces</div>
+<div class="tip" id="fs33">val trial : HobbsPearsonTrial</div>
+<div class="tip" id="fs34">Multiple items<br />type Scatter =<br />&#160;&#160;inherit Trace<br />&#160;&#160;new : unit -&gt; Scatter<br />&#160;&#160;member ShouldSerializeconnectgaps : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_x : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_y : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefill : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefillcolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeline : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemarker : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemode : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Scatter<br /><br />--------------------<br />new : unit -&gt; Scatter</div>
+<div class="tip" id="fs35">property Scatter.r: seq&lt;float&gt;</div>
+<div class="tip" id="fs36">property Scatter.t: seq&lt;obj&gt;</div>
+<div class="tip" id="fs37">Multiple items<br />type Marker =<br />&#160;&#160;new : unit -&gt; Marker<br />&#160;&#160;member ShouldSerializecauto : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmax : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmin : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolorscale : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeline : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemaxdisplayed : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeopacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeoutliercolor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Marker<br /><br />--------------------<br />new : unit -&gt; Marker</div>
+<div class="tip" id="fs38">val layout : Layout<br /><br />Full name: Index.layout</div>
+<div class="tip" id="fs39">Multiple items<br />type Layout =<br />&#160;&#160;new : unit -&gt; Layout<br />&#160;&#160;member ShouldSerializeangularaxis : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeautosize : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebargap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebargroupgap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebarmode : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebarnorm : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeboxgap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeboxgroupgap : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Layout<br /><br />--------------------<br />new : unit -&gt; Layout</div>
+<div class="tip" id="fs40">Multiple items<br />type Figure =<br />&#160;&#160;new : data:Data * ?Layout:Layout -&gt; Figure<br />&#160;&#160;member GetInlineHtml : filename:string -&gt; string<br />&#160;&#160;member Plot : filename:string -&gt; PlotlyResponse option<br />&#160;&#160;member Fileopt : string<br />&#160;&#160;member Height : int<br />&#160;&#160;member Layout : Layout option<br />&#160;&#160;member Origin : string<br />&#160;&#160;member Response : PlotlyResponse option<br />&#160;&#160;member Width : int<br />&#160;&#160;member Fileopt : string with set<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Figure<br /><br />--------------------<br />new : data:Data * ?Layout:Layout -&gt; Figure</div>
+<div class="tip" id="fs41">Multiple items<br />module Data<br /><br />from XPlot.GoogleCharts<br /><br />--------------------<br />namespace Microsoft.FSharp.Data<br /><br />--------------------<br />type Data =<br />&#160;&#160;new : traces:seq&lt;Trace&gt; -&gt; Data<br />&#160;&#160;member Json : string<br />&#160;&#160;static member From : traces:seq&lt;#Trace&gt; -&gt; Data<br /><br />Full name: XPlot.Plotly.Data<br /><br />--------------------<br />new : traces:seq&lt;Trace&gt; -&gt; Data</div>
+<div class="tip" id="fs42">static member Data.From : traces:seq&lt;#Trace&gt; -&gt; Data</div>
+
+        </div>
+        <div class="span3">
+          <img src="/XPlot/img/logo.png" alt="F# Project" style="width:130px;margin:20px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">XPlot</li>
+            <li><a href="/XPlot/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/XPlot">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/TahaHachana/XPlot">Source Code on GitHub</a></li>
+            <li><a href="/XPlot/license.html">License</a></li>
+            <li><a href="/XPlot/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/XPlot/tutorial.html">Sample tutorial</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/XPlot/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-   </div>
-  </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50af450141ce9366"></script>
- </body>
-</html>
+    <a href="http://github.com/TahaHachana/XPlot"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
