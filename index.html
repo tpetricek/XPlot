@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>XPlot
+    <title>XPlot: F# Data Visualization Package
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Data visualization library for F#"/>
@@ -29,8 +29,11 @@
     <div class="container">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/TahaHachana/XPlot">github page</a></li>
+          <li><a href="http://fslab.org"><img height="16" width="16" src="http://fslab.org/img/thumbs/fslab.png" /> FsLab</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data"><img height="16" width="16" src="http://fslab.org/img/thumbs/fsharpdata.png" /> F# Data</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle"><img height="16" width="16" src="http://fslab.org/img/thumbs/deedle.png" /> Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider"><img height="16" width="16" src="http://fslab.org/img/thumbs/rprovider.png" /> R Provider</a></li>
+          <li><a href="http://numerics.mathdotnet.com/"><img height="16" width="16" src="http://fslab.org/img/thumbs/mathnet.png" /> Math.NET</a></li>
         </ul>
         <h3 class="muted"><a href="/XPlot/index.html">XPlot</a></h3>
       </div>
@@ -38,28 +41,29 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1><a name="XPlot" class="anchor" href="#XPlot">XPlot</a></h1>
+<h1><a name="XPlot-F-Data-Visualization-Package" class="anchor" href="#XPlot-F-Data-Visualization-Package">XPlot: F# Data Visualization Package</a></h1>
 
-<p>XPlot is a data visualization package for the F# programming language powered by popular JavaScript charting libraries that aims to circumvent the lack of configuration options support in the FsPlot sister project.</p>
+<p>XPlot is a cross-platform data visualization package for the F# programming language powered by popular 
+JavaScript charting libraries <a href="https://developers.google.com/chart/">Google Charts</a> and <a href="https://plot.ly/">Plotly</a>.
+The library provides a complete mapping for the configuration options of the underlying libraries and so
+you get a nice F# interface that gives you access to the full power of Google Charts and Plotly.
+The XPlot library can be used interactively from F# Interactive, but charts can equally easy be embedded
+in F# applications and in HTML reports.</p>
 
-<p>Documentation</p>
+<ul>
+<li>To get XPlot, scroll down to <a href="#How-to-get-XPlot">how to get XPlot</a> or get XPlot as part of the 
+<a href="http://fslab.org/download/">FsLab data science package</a>.</li>
+<li>For detailed documentation, scroll down to <a href="#Documentation">documentation</a> or follow links on the right.</li>
+</ul>
 
-<h2><a name="Example" class="anchor" href="#Example">Example</a></h2>
+<p>The next two demos show some of the more complex and advanced charts that can be created using XPlot.
+If you're getting started with XPlot, see the other <a href="#Documentation">documentation</a> pages for 
+simpler charts.</p>
 
-<p>This example demonstrates using a function defined in this sample library.</p>
+<h3><a name="XPlot-Google-Charts-example" class="anchor" href="#XPlot-Google-Charts-example">XPlot Google Charts example</a></h3>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l">1: </span>
-<span class="l">2: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="prep">#r</span> <span class="s">&quot;XPlot.GoogleCharts.dll&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs14', 15)" onmouseover="showTip(event, 'fs14', 15)" class="i">XPlot</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs15', 16)" onmouseover="showTip(event, 'fs15', 16)" class="i">GoogleCharts</span>
-</pre>
-</td>
-</tr>
-</table>
+<p>The following example uses the Google Charts library to create a combo chart showing coffee production
+in Bolivia, Ecuador and Madagascar (as bar plots), together with the average visualized as a line chart:</p>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
@@ -77,18 +81,18 @@
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 17)" onmouseover="showTip(event, 'fs16', 17)" class="i">series</span> <span class="o">=</span> [ <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;lines&quot;</span> ]
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 18)" onmouseover="showTip(event, 'fs17', 18)" class="i">inputs</span> <span class="o">=</span> [ <span onmouseout="hideTip(event, 'fs1', 19)" onmouseover="showTip(event, 'fs1', 19)" class="i">Bolivia</span>; <span onmouseout="hideTip(event, 'fs2', 20)" onmouseover="showTip(event, 'fs2', 20)" class="i">Ecuador</span>; <span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="i">Madagascar</span>; <span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="i">Average</span> ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 29)" onmouseover="showTip(event, 'fs22', 29)" class="i">series</span> <span class="o">=</span> [ <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;bars&quot;</span>; <span class="s">&quot;lines&quot;</span> ]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 30)" onmouseover="showTip(event, 'fs23', 30)" class="i">inputs</span> <span class="o">=</span> [ <span onmouseout="hideTip(event, 'fs8', 31)" onmouseover="showTip(event, 'fs8', 31)" class="i">Bolivia</span>; <span onmouseout="hideTip(event, 'fs9', 32)" onmouseover="showTip(event, 'fs9', 32)" class="i">Ecuador</span>; <span onmouseout="hideTip(event, 'fs10', 33)" onmouseover="showTip(event, 'fs10', 33)" class="i">Madagascar</span>; <span onmouseout="hideTip(event, 'fs11', 34)" onmouseover="showTip(event, 'fs11', 34)" class="i">Average</span> ]
 
-<span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="i">inputs</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 24)" onmouseover="showTip(event, 'fs18', 24)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 25)" onmouseover="showTip(event, 'fs19', 25)" class="f">Combo</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs20', 27)" onmouseover="showTip(event, 'fs20', 27)" class="f">WithOptions</span> 
-     (<span onmouseout="hideTip(event, 'fs21', 28)" onmouseover="showTip(event, 'fs21', 28)" class="t">Options</span>(<span class="i">title</span> <span class="o">=</span> <span class="s">&quot;Coffee Production&quot;</span>, <span onmouseout="hideTip(event, 'fs16', 29)" onmouseover="showTip(event, 'fs16', 29)" class="i">series</span> <span class="o">=</span> 
-        [| <span class="k">for</span> <span onmouseout="hideTip(event, 'fs22', 30)" onmouseover="showTip(event, 'fs22', 30)" class="i">typ</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs16', 31)" onmouseover="showTip(event, 'fs16', 31)" class="i">series</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs23', 32)" onmouseover="showTip(event, 'fs23', 32)" class="t">Series</span>(<span onmouseout="hideTip(event, 'fs22', 33)" onmouseover="showTip(event, 'fs22', 33)" class="i">typ</span>) |]))
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 34)" onmouseover="showTip(event, 'fs18', 34)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs24', 35)" onmouseover="showTip(event, 'fs24', 35)" class="f">WithLabels</span> 
+<span onmouseout="hideTip(event, 'fs23', 35)" onmouseover="showTip(event, 'fs23', 35)" class="i">inputs</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="f">Combo</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 38)" onmouseover="showTip(event, 'fs24', 38)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="f">WithOptions</span> 
+     (<span onmouseout="hideTip(event, 'fs27', 40)" onmouseover="showTip(event, 'fs27', 40)" class="t">Options</span>(<span class="i">title</span> <span class="o">=</span> <span class="s">&quot;Coffee Production&quot;</span>, <span onmouseout="hideTip(event, 'fs22', 41)" onmouseover="showTip(event, 'fs22', 41)" class="i">series</span> <span class="o">=</span> 
+        [| <span class="k">for</span> <span onmouseout="hideTip(event, 'fs28', 42)" onmouseover="showTip(event, 'fs28', 42)" class="i">typ</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs22', 43)" onmouseover="showTip(event, 'fs22', 43)" class="i">series</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs29', 44)" onmouseover="showTip(event, 'fs29', 44)" class="t">Series</span>(<span onmouseout="hideTip(event, 'fs28', 45)" onmouseover="showTip(event, 'fs28', 45)" class="i">typ</span>) |]))
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 46)" onmouseover="showTip(event, 'fs24', 46)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs30', 47)" onmouseover="showTip(event, 'fs30', 47)" class="f">WithLabels</span> 
      [<span class="s">&quot;Bolivia&quot;</span>; <span class="s">&quot;Ecuador&quot;</span>; <span class="s">&quot;Madagascar&quot;</span>; <span class="s">&quot;Average&quot;</span>]
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="f">WithLegend</span> <span class="k">true</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 38)" onmouseover="showTip(event, 'fs18', 38)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="f">WithSize</span> (<span class="n">700</span>, <span class="n">300</span>)
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 48)" onmouseover="showTip(event, 'fs24', 48)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 49)" onmouseover="showTip(event, 'fs31', 49)" class="f">WithLegend</span> <span class="k">true</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 50)" onmouseover="showTip(event, 'fs24', 50)" class="t">Chart</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 51)" onmouseover="showTip(event, 'fs32', 51)" class="f">WithSize</span> (<span class="n">600</span>, <span class="n">250</span>)
 </pre>
 </td>
 </tr>
@@ -102,32 +106,22 @@
 
             var options = {"legend":{"position":"right"},"series":[{"type":"bars"},{"type":"bars"},{"type":"bars"},{"type":"lines"}],"title":"Coffee Production"} 
 
-            var chart = new google.visualization.ComboChart(document.getElementById('2bed1a65-e016-48ab-b37e-3c9972813aa5'));
+            var chart = new google.visualization.ComboChart(document.getElementById('b0c99334-fbf2-4335-80d9-d435126d56ea'));
             chart.draw(data, options);
         }
 </script>
-<div id="2bed1a65-e016-48ab-b37e-3c9972813aa5" style="width: 700px; height: 300px;"></div>
+<div id="b0c99334-fbf2-4335-80d9-d435126d56ea" style="width: 600px; height: 300px;"></div>
 
-<p>Some more info</p>
+<p>The XPlot library uses the F# <code>|&gt;</code> operator to configure charts. In the above example, we use <code>Chart.Combo</code>
+to create a basic chart and then we set a number of properties - <code>Chart.WithOptions</code> specifies how the
+chart looks, <code>Chart.WithLabels</code> and <code>Chart.WithLegend</code> adds the legend that annotates the individual
+chart series.</p>
 
-<h2><a name="One-more-example" class="anchor" href="#One-more-example">One more example</a></h2>
+<h3><a name="XPlot-Plotly-example" class="anchor" href="#XPlot-Plotly-example">XPlot Plotly example</a></h3>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="prep">#load</span> <span class="s">&quot;credentials.fsx&quot;</span>
-<span class="prep">#r</span> <span class="s">&quot;XPlot.Plotly.dll&quot;</span>
-<span class="k">open</span> <span onmouseout="hideTip(event, 'fs14', 40)" onmouseover="showTip(event, 'fs14', 40)" class="i">XPlot</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 41)" onmouseover="showTip(event, 'fs27', 41)" class="i">Plotly</span>
-<span onmouseout="hideTip(event, 'fs28', 42)" onmouseover="showTip(event, 'fs28', 42)" class="t">Plotly</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 43)" onmouseover="showTip(event, 'fs29', 43)" class="f">Signin</span> <span onmouseout="hideTip(event, 'fs30', 44)" onmouseover="showTip(event, 'fs30', 44)" class="t">MyCredentials</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs31', 45)" onmouseover="showTip(event, 'fs31', 45)" class="i">userAndKey</span>
-</pre>
-</td>
-</tr>
-</table>
+<p>The following example uses the Plotly online data analytics and visualization tool. It creates a scatter
+plot, rendered on a polar chart with different marker color for each of the trials stored in the <code>HobbsPearson</code>
+data set:</p>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
@@ -143,68 +137,155 @@
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 46)" onmouseover="showTip(event, 'fs32', 46)" class="i">traces</span> <span class="o">=</span>
-  [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs33', 47)" onmouseover="showTip(event, 'fs33', 47)" class="i">trial</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs13', 48)" onmouseover="showTip(event, 'fs13', 48)" class="i">HobbsPearson</span> <span class="k">-&gt;</span>
-    <span onmouseout="hideTip(event, 'fs34', 49)" onmouseover="showTip(event, 'fs34', 49)" class="t">Scatter</span>(<span onmouseout="hideTip(event, 'fs35', 50)" onmouseover="showTip(event, 'fs35', 50)" class="i">r</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs6', 52)" onmouseover="showTip(event, 'fs6', 52)" class="i">Radial</span>, <span onmouseout="hideTip(event, 'fs36', 53)" onmouseover="showTip(event, 'fs36', 53)" class="i">t</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 54)" onmouseover="showTip(event, 'fs33', 54)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs9', 55)" onmouseover="showTip(event, 'fs9', 55)" class="i">Angular</span>, 
-      <span class="i">mode</span> <span class="o">=</span> <span class="s">&quot;markers&quot;</span>, <span class="i">marker</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 56)" onmouseover="showTip(event, 'fs37', 56)" class="t">Marker</span>(<span class="i">color</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs33', 57)" onmouseover="showTip(event, 'fs33', 57)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 58)" onmouseover="showTip(event, 'fs11', 58)" class="i">Color</span>))]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 52)" onmouseover="showTip(event, 'fs33', 52)" class="i">traces</span> <span class="o">=</span>
+  [ <span class="k">for</span> <span onmouseout="hideTip(event, 'fs34', 53)" onmouseover="showTip(event, 'fs34', 53)" class="i">trial</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs20', 54)" onmouseover="showTip(event, 'fs20', 54)" class="i">HobbsPearson</span> <span class="k">-&gt;</span>
+    <span onmouseout="hideTip(event, 'fs35', 55)" onmouseover="showTip(event, 'fs35', 55)" class="t">Scatter</span>(<span onmouseout="hideTip(event, 'fs36', 56)" onmouseover="showTip(event, 'fs36', 56)" class="i">r</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs34', 57)" onmouseover="showTip(event, 'fs34', 57)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs13', 58)" onmouseover="showTip(event, 'fs13', 58)" class="i">Radial</span>, <span onmouseout="hideTip(event, 'fs37', 59)" onmouseover="showTip(event, 'fs37', 59)" class="i">t</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs34', 60)" onmouseover="showTip(event, 'fs34', 60)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs16', 61)" onmouseover="showTip(event, 'fs16', 61)" class="i">Angular</span>, 
+      <span class="i">mode</span> <span class="o">=</span> <span class="s">&quot;markers&quot;</span>, <span class="i">marker</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs38', 62)" onmouseover="showTip(event, 'fs38', 62)" class="t">Marker</span>(<span class="i">color</span><span class="o">=</span><span onmouseout="hideTip(event, 'fs34', 63)" onmouseover="showTip(event, 'fs34', 63)" class="i">trial</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs39', 64)" onmouseover="showTip(event, 'fs39', 64)" class="i">Color</span>))]
 
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 59)" onmouseover="showTip(event, 'fs38', 59)" class="i">layout</span> <span class="o">=</span>
-  <span onmouseout="hideTip(event, 'fs39', 60)" onmouseover="showTip(event, 'fs39', 60)" class="t">Layout</span>(<span class="i">title</span> <span class="o">=</span> <span class="s">&quot;Hobbs-Pearson Trials&quot;</span>, <span class="i">showlegend</span> <span class="o">=</span> <span class="k">false</span>,
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 65)" onmouseover="showTip(event, 'fs40', 65)" class="i">layout</span> <span class="o">=</span>
+  <span onmouseout="hideTip(event, 'fs41', 66)" onmouseover="showTip(event, 'fs41', 66)" class="t">Layout</span>(<span class="i">title</span> <span class="o">=</span> <span class="s">&quot;Hobbs-Pearson Trials&quot;</span>, <span class="i">showlegend</span> <span class="o">=</span> <span class="k">false</span>,
     <span class="i">plot_bgcolor</span> <span class="o">=</span> <span class="s">&quot;rgb(223,223,223)&quot;</span>)
 
-<span onmouseout="hideTip(event, 'fs40', 61)" onmouseover="showTip(event, 'fs40', 61)" class="t">Figure</span>(<span onmouseout="hideTip(event, 'fs41', 62)" onmouseover="showTip(event, 'fs41', 62)" class="t">Data</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs42', 63)" onmouseover="showTip(event, 'fs42', 63)" class="f">From</span>(<span onmouseout="hideTip(event, 'fs32', 64)" onmouseover="showTip(event, 'fs32', 64)" class="i">traces</span>), <span onmouseout="hideTip(event, 'fs38', 65)" onmouseover="showTip(event, 'fs38', 65)" class="i">layout</span>, <span class="i">Width</span><span class="o">=</span><span class="n">500</span>, <span class="i">Height</span><span class="o">=</span><span class="n">400</span>)
+<span onmouseout="hideTip(event, 'fs42', 67)" onmouseover="showTip(event, 'fs42', 67)" class="t">Figure</span>(<span onmouseout="hideTip(event, 'fs43', 68)" onmouseover="showTip(event, 'fs43', 68)" class="t">Data</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs44', 69)" onmouseover="showTip(event, 'fs44', 69)" class="f">From</span>(<span onmouseout="hideTip(event, 'fs33', 70)" onmouseover="showTip(event, 'fs33', 70)" class="i">traces</span>), <span onmouseout="hideTip(event, 'fs40', 71)" onmouseover="showTip(event, 'fs40', 71)" class="i">layout</span>, <span class="i">Width</span><span class="o">=</span><span class="n">400</span>, <span class="i">Height</span><span class="o">=</span><span class="n">300</span>)
 </pre>
 </td>
 </tr>
 </table>
 
-<iframe width="500" height="400" frameborder="0" seamless="seamless" 
-           scrolling="no" src="https://plot.ly/~tomasp/20.embed?width=500&height=400"></iframe>
+<iframe width="600" height="300" frameborder="0" seamless="seamless" 
+           scrolling="no" src="https://plot.ly/~tomasp/45.embed?width=600&height=300"></iframe>
 
-<p>Some more stuff!</p>
+<p>The code snippet creates one <code>Scatter</code> data series for each of the trials in the input. It sets the <code>r</code> and <code>t</code>
+properties to two lists of input values. If we wanted to produce an ordinary rectangular scatter plot, we could
+instead set the <code>x</code> and <code>y</code> properties.</p>
 
-<div class="tip" id="fs1">val Bolivia : (string * float) list<br /><br />Full name: Index.Bolivia</div>
-<div class="tip" id="fs2">val Ecuador : (string * float) list<br /><br />Full name: Index.Ecuador</div>
-<div class="tip" id="fs3">val Madagascar : (string * float) list<br /><br />Full name: Index.Madagascar</div>
-<div class="tip" id="fs4">val Average : (string * float) list<br /><br />Full name: Index.Average</div>
-<div class="tip" id="fs5">type HobbsPearsonTrial =<br />&#160;&#160;{Radial: float list;<br />&#160;&#160;&#160;Angular: obj list;<br />&#160;&#160;&#160;Color: string;}<br /><br />Full name: Index.HobbsPearsonTrial</div>
-<div class="tip" id="fs6">HobbsPearsonTrial.Radial: float list</div>
-<div class="tip" id="fs7">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
-<div class="tip" id="fs8">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
-<div class="tip" id="fs9">HobbsPearsonTrial.Angular: obj list</div>
-<div class="tip" id="fs10">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
-<div class="tip" id="fs11">HobbsPearsonTrial.Color: string</div>
-<div class="tip" id="fs12">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
-<div class="tip" id="fs13">val HobbsPearson : HobbsPearsonTrial list<br /><br />Full name: Index.HobbsPearson</div>
-<div class="tip" id="fs14">namespace XPlot</div>
-<div class="tip" id="fs15">module GoogleCharts<br /><br />from XPlot</div>
-<div class="tip" id="fs16">val series : string list<br /><br />Full name: Index.series</div>
-<div class="tip" id="fs17">val inputs : (string * float) list list<br /><br />Full name: Index.inputs</div>
-<div class="tip" id="fs18">type Chart =<br />&#160;&#160;static member Annotation : data:seq&lt;#seq&lt;DateTime * &#39;V * string * string&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;V :&gt; value)<br />&#160;&#160;static member Annotation : data:seq&lt;DateTime * #value * string * string&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Area : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bar : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Calendar : data:seq&lt;DateTime * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Chart</div>
-<div class="tip" id="fs19">static member Chart.Combo : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)</div>
-<div class="tip" id="fs20">static member Chart.WithOptions : options:Options -&gt; chart:GoogleChart -&gt; GoogleChart</div>
-<div class="tip" id="fs21">Multiple items<br />type Options =<br />&#160;&#160;new : unit -&gt; Options<br />&#160;&#160;member ShouldSerializeaggregationTarget : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeallValuesSuffix : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeallowHtml : unit -&gt; bool<br />&#160;&#160;member ShouldSerializealternatingRowStyle : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeanimation : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotationsWidth : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeareaOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeavoidOverlappingGridLines : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Options<br /><br />--------------------<br />new : unit -&gt; Options</div>
-<div class="tip" id="fs22">val typ : string</div>
-<div class="tip" id="fs23">Multiple items<br />type Series =<br />&#160;&#160;new : ?type:string -&gt; Series<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeareaOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecurveType : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefallingColor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializelineWidth : unit -&gt; bool<br />&#160;&#160;member ShouldSerializepointShape : unit -&gt; bool<br />&#160;&#160;member ShouldSerializepointSize : unit -&gt; bool<br />&#160;&#160;member ShouldSerializerisingColor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Series<br /><br />--------------------<br />new : ?type:string -&gt; Series</div>
-<div class="tip" id="fs24">static member Chart.WithLabels : labels:seq&lt;string&gt; -&gt; chart:GoogleChart -&gt; GoogleChart</div>
-<div class="tip" id="fs25">static member Chart.WithLegend : enabled:bool -&gt; chart:GoogleChart -&gt; GoogleChart</div>
-<div class="tip" id="fs26">static member Chart.WithSize : size:(int * int) -&gt; chart:GoogleChart -&gt; GoogleChart</div>
-<div class="tip" id="fs27">namespace XPlot.Plotly</div>
-<div class="tip" id="fs28">type Plotly =<br />&#160;&#160;private new : unit -&gt; Plotly<br />&#160;&#160;static member Signin : username:string * password:string -&gt; unit<br /><br />Full name: XPlot.Plotly.Plotly</div>
-<div class="tip" id="fs29">static member Plotly.Signin : username:string * password:string -&gt; unit</div>
-<div class="tip" id="fs30">module MyCredentials</div>
-<div class="tip" id="fs31">val userAndKey : string * string<br /><br />Full name: MyCredentials.userAndKey</div>
-<div class="tip" id="fs32">val traces : Scatter list<br /><br />Full name: Index.traces</div>
-<div class="tip" id="fs33">val trial : HobbsPearsonTrial</div>
-<div class="tip" id="fs34">Multiple items<br />type Scatter =<br />&#160;&#160;inherit Trace<br />&#160;&#160;new : unit -&gt; Scatter<br />&#160;&#160;member ShouldSerializeconnectgaps : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_x : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_y : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefill : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefillcolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeline : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemarker : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemode : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Scatter<br /><br />--------------------<br />new : unit -&gt; Scatter</div>
-<div class="tip" id="fs35">property Scatter.r: seq&lt;float&gt;</div>
-<div class="tip" id="fs36">property Scatter.t: seq&lt;obj&gt;</div>
-<div class="tip" id="fs37">Multiple items<br />type Marker =<br />&#160;&#160;new : unit -&gt; Marker<br />&#160;&#160;member ShouldSerializecauto : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmax : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmin : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolorscale : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeline : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemaxdisplayed : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeopacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeoutliercolor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Marker<br /><br />--------------------<br />new : unit -&gt; Marker</div>
-<div class="tip" id="fs38">val layout : Layout<br /><br />Full name: Index.layout</div>
-<div class="tip" id="fs39">Multiple items<br />type Layout =<br />&#160;&#160;new : unit -&gt; Layout<br />&#160;&#160;member ShouldSerializeangularaxis : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeautosize : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebargap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebargroupgap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebarmode : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebarnorm : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeboxgap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeboxgroupgap : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Layout<br /><br />--------------------<br />new : unit -&gt; Layout</div>
-<div class="tip" id="fs40">Multiple items<br />type Figure =<br />&#160;&#160;new : data:Data * ?Layout:Layout -&gt; Figure<br />&#160;&#160;member GetInlineHtml : filename:string -&gt; string<br />&#160;&#160;member Plot : filename:string -&gt; PlotlyResponse option<br />&#160;&#160;member Fileopt : string<br />&#160;&#160;member Height : int<br />&#160;&#160;member Layout : Layout option<br />&#160;&#160;member Origin : string<br />&#160;&#160;member Response : PlotlyResponse option<br />&#160;&#160;member Width : int<br />&#160;&#160;member Fileopt : string with set<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Figure<br /><br />--------------------<br />new : data:Data * ?Layout:Layout -&gt; Figure</div>
-<div class="tip" id="fs41">Multiple items<br />module Data<br /><br />from XPlot.GoogleCharts<br /><br />--------------------<br />namespace Microsoft.FSharp.Data<br /><br />--------------------<br />type Data =<br />&#160;&#160;new : traces:seq&lt;Trace&gt; -&gt; Data<br />&#160;&#160;member Json : string<br />&#160;&#160;static member From : traces:seq&lt;#Trace&gt; -&gt; Data<br /><br />Full name: XPlot.Plotly.Data<br /><br />--------------------<br />new : traces:seq&lt;Trace&gt; -&gt; Data</div>
-<div class="tip" id="fs42">static member Data.From : traces:seq&lt;#Trace&gt; -&gt; Data</div>
+<h2><a name="How-to-get-XPlot" class="anchor" href="#How-to-get-XPlot">How to get XPlot</a></h2>
+
+<h3><a name="XPlot-as-part-of-FsLab" class="anchor" href="#XPlot-as-part-of-FsLab">XPlot as part of FsLab</a></h3>
+
+<p>If you want to get XPlot as part of larger package of F# and .NET tools for doing data science, then check out
+the <a href="http://www.fslab.org">FsLab web site</a>. This gives you a nice cross-platform environment where you can
+access data using <a href="http://fsharp.github.io/FSharp.Data/">F# Data type providers</a>, analyze the data using 
+<a href="http://bluemountaincapital.github.io/Deedle/">Deedle data frames and series</a> and then visualize data using
+XPlot.</p>
+
+<h3><a name="Stand-alone-XPlot-packages" class="anchor" href="#Stand-alone-XPlot-packages">Stand alone XPlot packages</a></h3>
+
+<p>Alternatively, you can reference <a href="http://www.nuget.org/packages?q=XPlot">XPlot via a NuGet package</a>. On 
+Windows, you can use the <code>XPlot.GoogleCharts.WPF</code> and <code>XPlot.Plotly.WPF</code> packages, which provide you with
+a <code>Chart.Show</code> method that opens a chart in a new WPF window.</p>
+
+<p>Assuming the packages are in your <code>packages</code> folder, you can reference the libraries as follows:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="prep">#I</span> <span class="s">&quot;packages/XPlot.GoogleCharts.1.1.6/lib/net40&quot;</span>
+<span class="prep">#I</span> <span class="s">&quot;packages/XPlot.GoogleCharts.WPF.1.1.6/lib/net40&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;XPlot.GoogleCharts.dll&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;XPlot.GoogleCharts.WPF.dll&quot;</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 72)" onmouseover="showTip(event, 'fs1', 72)" class="i">XPlot</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 73)" onmouseover="showTip(event, 'fs2', 73)" class="i">GoogleCharts</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<p>When using Plotly, you'll also need to create a user account at the <a href="http://plot.ly">plot.ly</a> web site and
+pass your user name and API key to the <code>Plotly.Signin</code> function as follows:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="prep">#I</span> <span class="s">&quot;packages/XPlot.Plotly.1.1.6/lib/net40&quot;</span>
+<span class="prep">#r</span> <span class="s">&quot;XPlot.Plotly.dll&quot;</span>
+<span class="prep">#load</span> <span class="s">&quot;credentials.fsx&quot;</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 74)" onmouseover="showTip(event, 'fs1', 74)" class="i">XPlot</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs3', 75)" onmouseover="showTip(event, 'fs3', 75)" class="i">Plotly</span>
+<span onmouseout="hideTip(event, 'fs4', 76)" onmouseover="showTip(event, 'fs4', 76)" class="t">Plotly</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 77)" onmouseover="showTip(event, 'fs5', 77)" class="f">Signin</span> <span onmouseout="hideTip(event, 'fs6', 78)" onmouseover="showTip(event, 'fs6', 78)" class="t">MyCredentials</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 79)" onmouseover="showTip(event, 'fs7', 79)" class="i">userAndKey</span>
+</pre>
+</td>
+</tr>
+</table>
+
+<h2><a name="Documentation" class="anchor" href="#Documentation">Documentation</a></h2>
+
+<p>The documentation for the library is automatically generated from F# script files that you can find
+<a href="https://github.com/tpetricek/XPlot/tree/master/docs/content">in the <code>docs/content</code> folder on GitHub</a>. 
+The links in the right panel point to a number of tutorials that demonstrate some common scenarios.
+You can also copy the source code from GitHub.</p>
+
+<p>Additionally, the library also comes with an API reference that is generated from code comments. This
+is work in progress, so please help us &amp; contribute comments and documentation! The most important types
+are:</p>
+
+<ul>
+<li><a href="reference/xplot-googlecharts-chart.html">Google Chart type</a> contains methods for creating charts like 
+<code>Chart.Line</code> and for configuring charts like <code>Chart.WithOptions</code>.</li>
+<li><a href="reference/xplot-googlecharts-configuration-options.html">Google Options type</a> contains parameters for
+charts that are specified using <code>Chart.WithOptions</code>.</li>
+<li><p><a href="reference/xplot-googlecharts-configuration.html">Google Configuration module</a> contains other types
+that are used as parameters to <code>Chart.WithOptions</code>.</p></li>
+<li><a href="reference/xplot-plotly-graph.html">Plotly Graph module</a> contains methods for creating various kinds
+of charts such as <code>Scatter</code> used above.</li>
+<li><a href="reference/xplot-plotly-graph-layout.html">Plotly Layout type</a> specifies common properties of Plotly
+charts like title and color.</li>
+</ul>
+
+<div class="tip" id="fs1">namespace XPlot</div>
+<div class="tip" id="fs2">module GoogleCharts<br /><br />from XPlot</div>
+<div class="tip" id="fs3">namespace XPlot.Plotly</div>
+<div class="tip" id="fs4">type Plotly =<br />&#160;&#160;private new : unit -&gt; Plotly<br />&#160;&#160;static member Signin : username:string * password:string -&gt; unit<br /><br />Full name: XPlot.Plotly.Plotly</div>
+<div class="tip" id="fs5">static member Plotly.Signin : username:string * password:string -&gt; unit</div>
+<div class="tip" id="fs6">module MyCredentials</div>
+<div class="tip" id="fs7">val userAndKey : string * string<br /><br />Full name: MyCredentials.userAndKey</div>
+<div class="tip" id="fs8">val Bolivia : (string * float) list<br /><br />Full name: Index.Bolivia</div>
+<div class="tip" id="fs9">val Ecuador : (string * float) list<br /><br />Full name: Index.Ecuador</div>
+<div class="tip" id="fs10">val Madagascar : (string * float) list<br /><br />Full name: Index.Madagascar</div>
+<div class="tip" id="fs11">val Average : (string * float) list<br /><br />Full name: Index.Average</div>
+<div class="tip" id="fs12">type HobbsPearsonTrial =<br />&#160;&#160;{Radial: float list;<br />&#160;&#160;&#160;Angular: obj list;<br />&#160;&#160;&#160;Color: string;}<br /><br />Full name: Index.HobbsPearsonTrial</div>
+<div class="tip" id="fs13">HobbsPearsonTrial.Radial: float list</div>
+<div class="tip" id="fs14">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs15">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs16">HobbsPearsonTrial.Angular: obj list</div>
+<div class="tip" id="fs17">type obj = System.Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs18">Multiple items<br />HobbsPearsonTrial.Color: string<br /><br />--------------------<br />type Color =<br />&#160;&#160;new : unit -&gt; Color<br />&#160;&#160;member ShouldSerializefill : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefillOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializestroke : unit -&gt; bool<br />&#160;&#160;member ShouldSerializestrokeWidth : unit -&gt; bool<br />&#160;&#160;member fill : string<br />&#160;&#160;member fillOpacity : float<br />&#160;&#160;member stroke : string<br />&#160;&#160;member strokeWidth : int<br />&#160;&#160;member fill : string with set<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Color<br /><br />--------------------<br />new : unit -&gt; Color</div>
+<div class="tip" id="fs19">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs20">val HobbsPearson : HobbsPearsonTrial list<br /><br />Full name: Index.HobbsPearson</div>
+<div class="tip" id="fs21">Multiple items<br />type Color =<br />&#160;&#160;new : unit -&gt; Color<br />&#160;&#160;member ShouldSerializefill : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefillOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializestroke : unit -&gt; bool<br />&#160;&#160;member ShouldSerializestrokeWidth : unit -&gt; bool<br />&#160;&#160;member fill : string<br />&#160;&#160;member fillOpacity : float<br />&#160;&#160;member stroke : string<br />&#160;&#160;member strokeWidth : int<br />&#160;&#160;member fill : string with set<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Color<br /><br />--------------------<br />new : unit -&gt; Color</div>
+<div class="tip" id="fs22">val series : string list<br /><br />Full name: Index.series</div>
+<div class="tip" id="fs23">val inputs : (string * float) list list<br /><br />Full name: Index.inputs</div>
+<div class="tip" id="fs24">type Chart =<br />&#160;&#160;static member Annotation : data:seq&lt;#seq&lt;DateTime * &#39;V * string * string&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;V :&gt; value)<br />&#160;&#160;static member Annotation : data:seq&lt;DateTime * #value * string * string&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Area : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bar : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Bubble : data:seq&lt;string * #value * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;static member Calendar : data:seq&lt;DateTime * #value&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Chart</div>
+<div class="tip" id="fs25">static member Chart.Combo : data:seq&lt;#seq&lt;&#39;K * &#39;V&gt;&gt; * ?Labels:seq&lt;string&gt; * ?Options:Options -&gt; GoogleChart (requires &#39;K :&gt; key and &#39;V :&gt; value)</div>
+<div class="tip" id="fs26">static member Chart.WithOptions : options:Options -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs27">Multiple items<br />type Options =<br />&#160;&#160;new : unit -&gt; Options<br />&#160;&#160;member ShouldSerializeaggregationTarget : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeallValuesSuffix : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeallowHtml : unit -&gt; bool<br />&#160;&#160;member ShouldSerializealternatingRowStyle : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeanimation : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotationsWidth : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeareaOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeavoidOverlappingGridLines : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Options<br /><br />--------------------<br />new : unit -&gt; Options</div>
+<div class="tip" id="fs28">val typ : string</div>
+<div class="tip" id="fs29">Multiple items<br />type Series =<br />&#160;&#160;new : ?type:string -&gt; Series<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeareaOpacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecurveType : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefallingColor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializelineWidth : unit -&gt; bool<br />&#160;&#160;member ShouldSerializepointShape : unit -&gt; bool<br />&#160;&#160;member ShouldSerializepointSize : unit -&gt; bool<br />&#160;&#160;member ShouldSerializerisingColor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.GoogleCharts.Configuration.Series<br /><br />--------------------<br />new : ?type:string -&gt; Series</div>
+<div class="tip" id="fs30">static member Chart.WithLabels : labels:seq&lt;string&gt; -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs31">static member Chart.WithLegend : enabled:bool -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs32">static member Chart.WithSize : size:(int * int) -&gt; chart:GoogleChart -&gt; GoogleChart</div>
+<div class="tip" id="fs33">val traces : Scatter list<br /><br />Full name: Index.traces</div>
+<div class="tip" id="fs34">val trial : HobbsPearsonTrial</div>
+<div class="tip" id="fs35">Multiple items<br />type Scatter =<br />&#160;&#160;inherit Trace<br />&#160;&#160;new : unit -&gt; Scatter<br />&#160;&#160;member ShouldSerializeconnectgaps : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_x : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_y : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefill : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefillcolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeline : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemarker : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemode : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Scatter<br /><br />--------------------<br />new : unit -&gt; Scatter</div>
+<div class="tip" id="fs36">property Scatter.r: seq&lt;float&gt;</div>
+<div class="tip" id="fs37">property Scatter.t: seq&lt;obj&gt;</div>
+<div class="tip" id="fs38">Multiple items<br />type Marker =<br />&#160;&#160;new : unit -&gt; Marker<br />&#160;&#160;member ShouldSerializecauto : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmax : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmin : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolorscale : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeline : unit -&gt; bool<br />&#160;&#160;member ShouldSerializemaxdisplayed : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeopacity : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeoutliercolor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Marker<br /><br />--------------------<br />new : unit -&gt; Marker</div>
+<div class="tip" id="fs39">HobbsPearsonTrial.Color: string</div>
+<div class="tip" id="fs40">val layout : Layout<br /><br />Full name: Index.layout</div>
+<div class="tip" id="fs41">Multiple items<br />type Layout =<br />&#160;&#160;new : unit -&gt; Layout<br />&#160;&#160;member ShouldSerializeangularaxis : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeannotations : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeautosize : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebargap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebargroupgap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebarmode : unit -&gt; bool<br />&#160;&#160;member ShouldSerializebarnorm : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeboxgap : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeboxgroupgap : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Layout<br /><br />--------------------<br />new : unit -&gt; Layout</div>
+<div class="tip" id="fs42">Multiple items<br />type Figure =<br />&#160;&#160;new : data:Data * ?Layout:Layout -&gt; Figure<br />&#160;&#160;member GetInlineHtml : filename:string -&gt; string<br />&#160;&#160;member Plot : filename:string -&gt; PlotlyResponse option<br />&#160;&#160;member Fileopt : string<br />&#160;&#160;member Height : int<br />&#160;&#160;member Layout : Layout option<br />&#160;&#160;member Origin : string<br />&#160;&#160;member Response : PlotlyResponse option<br />&#160;&#160;member Width : int<br />&#160;&#160;member Fileopt : string with set<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Figure<br /><br />--------------------<br />new : data:Data * ?Layout:Layout -&gt; Figure</div>
+<div class="tip" id="fs43">Multiple items<br />module Data<br /><br />from XPlot.GoogleCharts<br /><br />--------------------<br />namespace Microsoft.FSharp.Data<br /><br />--------------------<br />type Data =<br />&#160;&#160;new : traces:seq&lt;Trace&gt; -&gt; Data<br />&#160;&#160;member Json : string<br />&#160;&#160;static member From : traces:seq&lt;#Trace&gt; -&gt; Data<br /><br />Full name: XPlot.Plotly.Data<br /><br />--------------------<br />new : traces:seq&lt;Trace&gt; -&gt; Data</div>
+<div class="tip" id="fs44">static member Data.From : traces:seq&lt;#Trace&gt; -&gt; Data</div>
 
         </div>
         <div class="span3">
@@ -213,16 +294,30 @@
             <li class="nav-header">XPlot</li>
             <li><a href="/XPlot/index.html">Home page</a></li>
             <li class="divider"></li>
-            <li><a href="http://nuget.org/packages/XPlot">Get Library via NuGet</a></li>
+            <li><a href="http://www.nuget.org/packages?q=XPlot">Get Library via NuGet</a></li>
             <li><a href="http://github.com/TahaHachana/XPlot">Source Code on GitHub</a></li>
-            <li><a href="/XPlot/license.html">License</a></li>
+            <li><a href="/XPlot/license.html">License (Apache 2.0)</a></li>
             <li><a href="/XPlot/release-notes.html">Release Notes</a></li>
             
-            <li class="nav-header">Getting started</li>
-            <li><a href="/XPlot/tutorial.html">Sample tutorial</a></li>
+            <li class="nav-header">Google Charts</li>
+            <li><a href="/XPlot/google/points-lines.html">Points and lines</a></li>
+            <li><a href="/XPlot/google/geo.html">Geo charts</a></li>
+
+            <li class="nav-header">Plotly Charts</li>
+            <li>Coming soon</li>
 
             <li class="nav-header">Documentation</li>
             <li><a href="/XPlot/reference/index.html">API Reference</a></li>
+            <li class="divider"></li>
+
+            <li><a href="/XPlot/reference/xplot-googlecharts-chart.html">Google Chart type</a></li>
+            <li><a href="/XPlot/reference/xplot-googlecharts-configuration-options.html">Google Option type</a></li>
+            <li><a href="/XPlot/reference/xplot-googlecharts-configuration.html">Google configuration module</a></li>
+
+            <li class="divider"></li>
+
+            <li><a href="/XPlot/reference/xplot-plotly-graph.html">Plotly Graph module</a></li>
+            <li><a href="/XPlot/reference/xplot-plotly-graph-layout.html">Plotly Layout type</a></li>
           </ul>
         </div>
       </div>
